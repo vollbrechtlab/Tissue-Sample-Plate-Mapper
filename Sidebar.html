@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base target="_top">
+		<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">    
+	</head>
+	<body >
+		<form id="userForm" style="margin-left:45px; margin-top:20px;">
+			<b>Project Name</b><br>
+			<input type="text" name="Project Name" value="" maxlength="10"><br><br>
+			<b>Station/Site</b><br>
+			<input type="text" name="Station/Site" value=""><br><br>
+			<b>Intended Sample Date</b><br>
+			<input type="date" name="Sample Date" value=""><br><br>
+			<b>Crop</b><br>
+			<input type="text" name="Crop" value="" list="Crops">
+			<datalist id="Crops">
+				<option value="Corn (Field)">Corn (Field)</option>
+				<option value="Rice (Field)">Rice (Field)</option>
+			</datalist><br><br>
+			<b>Plate Format</b><br>
+			<select name="Rack Format">
+				<option value="96-All (d)">96-All (d)</option>
+				<option value="96-All (a)">96-All (a)</option>
+			</select><br><br>
+			<b>Shading Option</b><br>
+			<select name="Shading Option">
+				<option value="First Plant">Shade First Plant of Every Entry</option>
+				<option value="Every Other Full">Shade Every Other Full Entry</option>
+				<option value="No">No Shading Desired</option>
+			</select>
+			<br><br>
+			<b>First plate number</b><br>
+			<input type="text" name="First plate number" value=""><br><br>
+			<input class="blue" id="btnStartGeneration" type="button" value="Start"/>
+		</form>
+		<br><br>
+		
+		<script
+		src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous">
+		</script>
+		
+		<script>
+		$(document).ready(function() {
+			$("#btnStartGeneration").click(function(){
+				var formObj = document.getElementById("userForm");
+				google.script.run.startGeneration(formObj);
+			}); 
+		});
+		</script>
+
+		<h3 align="center">How to use this add-on</h3>
+		<ol>
+			<li>Put your data in "Original Data" sheet.<br>
+				Be sure "Plot Name/#", "Plant #" and "Note (optional)" are spelled correctly</li>
+			<li>Fill out the form in this sidebar.</li>
+			<li>Go to "Plate Labels for printing" sheet.</li>
+			<li>Print the sheet with the following settings.<br>
+			Print: Current sheet, <br>
+			<font color="red">Page orientation: Landscape</font>, <br>
+			<font color="red">Scale: 100%</font>, <br>
+			Margins: Normal, <br>
+			Formatting: No gridlines, <br>
+			Horizontal Alignment: Center, <br>
+			Vertical Alignment: Center<br>
+			(Some browsers save PDF instead of printing)</li>
+		</ol>
+	 
+	</body>
+</html>
